@@ -7,7 +7,7 @@ import enumAuth from './_auth';
 import Qs from 'qs';
 
 interface IHeader {
-  'content-type': string;
+  'Content-Type'?: string;
   'Authorization'?: string;
 }
 
@@ -26,7 +26,7 @@ interface IReq {
 
 // 请求头
 const oHeaders: IHeader = {
-  'content-type': 'application/x-www-form-urlencoded',
+  'Content-Type': 'x-www-form-urlencoded',
 };
 
 class FetchClient extends Service {
@@ -69,12 +69,22 @@ class FetchClient extends Service {
       case enumAuth.Level02: // 不需要Token
         headers = Object.assign(oHeaders, {});
         break;
+      case enumAuth.Level03: // 不需要Token
+        headers = Object.assign(oHeaders, {
+          Authorization: 'Basic d2ViLW1hbnVmYWN0dXJlcjpmZDQ2MzE2ZjA0OA==',
+        });
+        break;
     }
-    params.data = Qs.stringify(params.data, { arrayFormat: 'brackets' });
 
     if (params.method === 'GET' || params.method === 'HEAD') {
+      params.data = Qs.stringify(params.data, { arrayFormat: 'brackets' });
       params.url = `${params.url}?${params.data}`;
     } else {
+      // 非表单数据，及JSON 表头
+      if (Object.prototype.toString.call(params.data) !== '[object FormData]') {
+        Object.assign(headers, { 'Content-Type': 'application/json', 'Accept': 'application/json' });
+        params.data = JSON.stringify(params.data);
+      }
       conf = { body: params.data };
     }
 
@@ -100,7 +110,8 @@ class FetchClient extends Service {
   /*
    * 请求工厂
    * */
-  private async httpFactory({ url = '', data = null, auth = enumAuth.Level01, method = '' }: IParams) {
+  private async httpFactory({ url = '', data = null, auth = enumAuth.Level01, method }: IParams) {
+    // console.log(data);
     const req: any = await this.interceptorRequest({ url, data, auth, method });       // 请求拦截
     // console.log(req)
     const res = await fetch(req.url, req.config);               // 网络请求

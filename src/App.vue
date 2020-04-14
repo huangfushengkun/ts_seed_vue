@@ -2,19 +2,27 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <button @click="login">登录</button>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import HelloWorld from './components/HelloWorld.vue';
-
+import userService from './service/userService';
 @Component({
   components: {
     HelloWorld,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  login() {
+    userService.fLoginService().then(res => {
+      console.log(res);
+
+    })
+  }
+}
 </script>
 
 <style lang="scss">

@@ -1,9 +1,10 @@
 /*
-  * 鉴权枚举
-  * */
-
-  enum Auth {
+ * 鉴权枚举
+ * */
+enum Auth {
     Level01,
     Level02,
-  }
-  export default Auth;
+    Level03
+}
+
+export default Auth;
