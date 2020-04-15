@@ -11,8 +11,7 @@ export default {
       url: loginUrl(),
       // auth: enumAuth.Level01,
       data: {
-        name: 'husngeu',
-        account: 'dongfan@163.com',
+        account: 'huangfushengkun@163.com',
         type: 101,
         secret: 'huangfu521',
       },

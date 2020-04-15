@@ -1,9 +1,11 @@
 <template>
-  <div id="app">
+  <router-view/>
+
+  <!-- <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
     <button @click="login">登录</button>
-  </div>
+  </div> -->
 </template>
 
 <script lang="ts">
@@ -16,12 +18,16 @@ import userService from './service/userService';
   },
 })
 export default class App extends Vue {
-  login() {
-    userService.fLoginService().then(res => {
+  public login() {
+    userService.fLoginService().then((res) => {
       console.log(res);
 
-    })
+    });
   }
+  public mounted() {
+
+  }
+
 }
 </script>
 

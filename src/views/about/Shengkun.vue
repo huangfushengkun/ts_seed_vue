@@ -1,16 +1,16 @@
 <template>
   <section class="about">
-    <div class="left_nav">
+    <!-- <div class="left_nav">
       <ul>
         <router-link tag="li" :to="{name:'Huangfu',query:{name:'huangfu'}}">to huangfu</router-link>
-        <router-link tag="li" :to="{name:'Shengkun',params:{name:'huangfu'}}">to shengkun</router-link>
+        <router-link tag="li" :to="{name:'Shengkun',query:{name:'huangfu'}}">to shengkun</router-link>
+        <router-link tag="li" :to="{name:'Kunge',query:{name:'huangfu'}}">to kunge</router-link>
       </ul>
-    </div>
-    <router-view></router-view>
-    <!-- <div class="content">
-      <h1>This is an about page</h1>
-      <router-link :to="{name:'Login',query:{name:'huangfu'}}">to login</router-link>
     </div> -->
+    <!-- <div class="content"> -->
+      <h1>This is an about => shengkun  page</h1>
+      <router-link :to="{name:'Login',query:{name:'huangfu'}}">to login</router-link>
+    <!-- </div> -->
   </section>
 </template>
 <script>
