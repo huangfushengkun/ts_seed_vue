@@ -40,4 +40,7 @@ export default class App extends Vue {
   color: #2c3e50;
   margin-top: 60px;
 }
+.hf-active{
+  color: #ff6700;
+}
 </style>

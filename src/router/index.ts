@@ -13,13 +13,14 @@ const routes: RouteConfig[] = [
         path: '/about',
         name: 'About',
         component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+        redirect: '/about/shengkun',
         children: [
           {
-            path: '/huangfu',
+            path: 'huangfu',
             name: 'Huangfu',
             component: () => import(/* webpackChunkName: "about" */ '../views/about/Huangfu.vue'),
           }, {
-            path: '/shengkun',
+            path: 'shengkun',
             name: 'Shengkun',
             component: () => import(/* webpackChunkName: "about" */ '../views/about/Shengkun.vue'),
           },
@@ -48,8 +49,10 @@ const routes: RouteConfig[] = [
 ];
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
+  linkExactActiveClass: 'hf-active',
+  linkActiveClass: 'hf-active',
+  // mode: 'history',
+  // base: process.env.BASE_URL,
   routes,
 });
 
